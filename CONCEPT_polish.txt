@@ -1,4 +1,4 @@
-1. Problem filozofów (philosphers):
+1. Problem filozofów (philosophers):
 
 Problem jest modyfikacją problemu filozofów wzbogacony o różną wielkość posiłków i priorytet z tym związany.
 W rozwiązaniu problemu filozofów wzorowalem się na koncepcji z książki "Systemy operacyjne" Andrew S. Tanenbaum, Herbert Bos. 
