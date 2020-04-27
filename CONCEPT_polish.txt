@@ -1,0 +1,21 @@
+1. Problem filozofów (philosphers):
+
+Problem jest modyfikacją problemu filozofów wzbogacony o różną wielkość posiłków i priorytet z tym związany.
+W rozwiązaniu problemu filozofów wzorowalem się na koncepcji z książki "Systemy operacyjne" Andrew S. Tanenbaum, Herbert Bos. 
+
+Każdy z filozofów jest oddzielnym procesem.
+
+Idea polega na tym, że filozofowie próbują podnieść oba widelce naraz, jeśli im się uda mogą zacząć jeść, jeśli nie to odpuszczają. 
+Filozof może jeść wtedy, gdy jest w stanie hungry oraz jego lewy i prawy sąsiad nie są w stanie eating.
+
+Po zjedzeniu filozof odkłada widelce w następującej kolejności: sprawdza, który zjego sąsiadów zjadł dotychczas mniej i mu jako pierwszemu przekazuje widelec. Sąsiad, który dostał widelec sprawdza czy może teraz jeść (jego drugi sąsiąd nadal może jeść), jeśli tak przechodzi do posiłku, jeśli nie to nadal czeka. Następnie sprawdzany jest sąsiad, który zjadł dotychczas więcej.
+
+Aby zakończyć program należy przerwać dzialanie programu (ctrl+c), po przerwaniu programu dzięki obsłużeniu sygnału SIGINT, wyświetli się informacja ile zjadł każdy z filozofów.
+
+Na raz może jeść kilka filozofów, ale podnosić widelce i opuszczać widelce tylko jeden, jest to zapewnione globalnym mutexem w celu atomowości operacji.
+
+Oprócz tego, każdy z filozofów ma swój własny mutex (program zaczynają z opuszczonym mutexem), na którym czeka po nieudanej próbie wzięcia widelców (któryś z sąsiadow jadł). Jego mutex jest podnoszony przez jego sąsiada po zjedzeniu (pod warunkiem że drugi sąsiad nie je). 
+
+W pamięci współdzielonej znajduje się tablica informująca o tym ile zjadł dany filozof oraz o stanie każdego z filozofów (myśli,głodny,je).
+
+Rozwiązanie to gwarantuje niemożliwość zakleszczenia procesów, całkiem dużą współbieżność oraz nie powoduje głodzenia procesów.
